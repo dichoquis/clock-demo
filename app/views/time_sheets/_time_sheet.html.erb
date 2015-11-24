@@ -1,0 +1,37 @@
+<div class="row">
+  <div class="col s12 center-align">
+    <%= t('time_sheets.total_hours_for_today') %>
+    <h1><%= @formatted_total_work_time %></h1>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col s12">
+    <table>
+      <thead>
+      <tr>
+        <th><%= t('time_sheets.clock_in').html_safe %></th>
+        <th><%= t('time_sheets.clock_out').html_safe %></th>
+        <th><%= t('time_sheets.work_hours').html_safe %></th>
+        <th><%= t('time_sheets.notes').html_safe %></th>
+      </tr>
+      </thead>
+      <tbody>
+      <% @time_sheets.each do |time_sheet| %>
+          <tr>
+            <td><%= time_sheet.formatted_clock_in %></td>
+            <td><%= time_sheet.formatted_clock_out %></td>
+            <td><i class="grey-text"><%= time_sheet.total_work_time %></i></td>
+            <td>
+              <% unless time_sheet.clock_out.nil? %>
+                  <%= link_to time_sheet_note_path(time_sheet), class: 'waves-effect waves-light a-view-note' do %>
+                      <i class="material-icons">assignment</i>
+                  <% end %>
+              <% end %>
+            </td>
+          </tr>
+      <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

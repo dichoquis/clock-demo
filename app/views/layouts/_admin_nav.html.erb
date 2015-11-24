@@ -1,0 +1,49 @@
+<nav>
+  <div class="a-nav-header hide-on-med-and-down">
+    <div class="brand-logo">
+      <%= yield(:heading) %>
+    </div>
+    <div class="nav-wrapper">
+      <ul class="right">
+        <li><a href="#"><%= current_user.full_name %></a></li>
+        <li><%= link_to t('logout').html_safe, logout_path %></li>
+      </ul>
+    </div>
+  </div>
+
+  <div id="slide-out" class="side-nav fixed green lighten-4">
+    <div class="a-logo valign-wrapper white black-text">
+      <h1 class="valign right-align"><%= t('app.name').html_safe %></h1>
+    </div>
+    <ul class="white">
+      <li class="<%= 'active' if yield(:active_menu) == 'time_sheets' %>">
+        <%= link_to time_sheets_path, class: 'grey-text text-darken-3' do %>
+            <i class="material-icons red-text text-darken-3">schedule</i>
+            <strong><%= t('menu.time_sheet').html_safe %></strong>
+        <% end %>
+      </li>
+      <li class="<%= 'active' if yield(:active_menu) == 'reports' %>">
+        <a href="#!" class="grey-text text-darken-3"><i class="material-icons red-text text-accent-1">today</i>
+          <strong><%= t('menu.reports').html_safe %></strong></a></li>
+      <li class="<%= 'active' if yield(:active_menu) == 'users' %>">
+        <%= link_to users_path, class: 'grey-text text-darken-3' do %>
+            <i class="material-icons orange-text text-light-3">supervisor_account</i>
+            <strong><%= t('menu.users').html_safe %></strong>
+        <% end %>
+      </li>
+      <li class="<%= 'active' if yield(:active_menu) == 'tasks' %>">
+        <%= link_to tasks_path, class: 'grey-text text-darken-3' do %>
+            <i class="material-icons yellow-text">assignment</i>
+            <strong><%= t('menu.tasks').html_safe %></strong>
+        <% end %>
+      </li>
+      <li class="<%= 'active' if yield(:active_menu) == 'settings' %>">
+        <a href="#!" class="grey-text text-darken-3"><i class="material-icons teal-text text-darken-3">settings</i>
+          <strong><%= t('menu.settings').html_safe %></strong></a></li>
+      <li class="hide-on-large-only">
+        <a href="<%= logout_path %>" class="grey-text text-darken-3"><i class="material-icons orange-text text-darken-4">power_settings_new</i>
+          <strong><%= t('menu.logout').html_safe %></strong></a></li>
+    </ul>
+  </div>
+  <a href="#" data-activates="slide-out" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
+</nav>

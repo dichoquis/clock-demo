@@ -1,0 +1,47 @@
+<% content_for(:title, t('tasks.form.title').html_safe) %>
+<% content_for(:heading) do %>
+    <%= link_to tasks_path do %>
+        <i class="material-icons">arrow_back</i>
+    <% end %>
+    <%= t('tasks.form.heading').html_safe %>
+<% end %>
+<% content_for(:active_menu, 'tasks') %>
+
+<%= form_for @task do |f| %>
+    <% if current_user.admin? %>
+        <div class="row">
+          <div class="input-field col s12 m6 l6">
+            <i class="material-icons prefix">account_circle</i>
+            <%= f.select(:user_id, User.where(role: 0).collect { |user| [user.full_name, user.id] }) %>
+            <%= f.label :user_id, t('tasks.form.user').html_safe %>
+          </div>
+        </div>
+    <% end %>
+    <div class="row">
+      <idv class="input-field col s12 m6 l6">
+        <i class="material-icons prefix">description</i>
+        <%= f.text_area :description, rows: 10, class: 'materialize-textarea validate' %>
+        <%= f.label :description, t('tasks.form.description').html_safe %>
+      </idv>
+    </div>
+    <div class="row">
+      <div class="input-field col s12 m6 l6">
+        <i class="material-icons prefix hide"></i>
+        <%= f.select :priority, class: 'validate' do %>
+            <%= options_for_select([['Baja', 0], ['Normal', 1], ['Importante', 2], ['Muy importante', 3]], 1) %>
+        <% end %>
+        <%= f.label :priority, t('tasks.form.priority') %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-field col s12 m6 l6">
+        <i class="material-icons prefix">today</i>
+        <%= f.date_field :expiration_date, min: Date.today, class: 'datepicker' %>
+        <%= f.label :expiration_date, t('tasks.form.expiration_date') %>
+      </div>
+    </div>
+    <div class="row">
+        <%= f.button t('tasks.form.btn.save').html_safe, class: 'btn waves-effect waves-light' %>
+        <%= link_to t('btn.cancel'), tasks_path, class: 'btn-flat waves-effect center-align' %>
+    </div>
+<% end %>

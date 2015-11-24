@@ -1,0 +1,32 @@
+/*** Custom Colors ***/
+.a-color-1 {
+  color: #de5842 !important;
+}
+
+.a-color-2 {
+  color: #fcd059 !important;
+}
+
+.a-color-3 {
+  color: #ededea !important;
+}
+
+.a-color-4 {
+  color: #bfe1bf !important;
+}
+
+.a-color-5 {
+  color: #a2d7d8 !important;
+}
+
+/*** Custom Toast ***/
+.a-toast .material-icons {
+  font-size: 16px;
+  vertical-align: middle;
+}
+
+.a-toast .material-icons.a-toast-close {
+  padding-left: 8px;
+  cursor: pointer;
+  color: gray;
+}

@@ -1,0 +1,88 @@
+<% content_for(:title, t('users.form.new.title').html_safe) %>
+<% content_for(:heading) do %>
+    <%= link_to users_path do %>
+        <i class="material-icons">arrow_back</i>
+    <% end %>
+
+    <%= t(@user.id? ? 'users.form.edit.heading' : 'users.form.new.heading').html_safe %>
+<% end %>
+<% content_for(:active_menu, 'users') %>
+
+<%= form_for @user do |f| %>
+    <h5 class="a-color-2"><%= t('users.form.account').html_safe %></h5>
+
+    <div class="row">
+      <div class="input-field col s12 m6 l4">
+        <i class="material-icons prefix">account_circle</i>
+        <%= f.text_field :username, class: 'validate' %>
+        <%= f.label :username, t('users.form.username') %>
+      </div>
+      <div class="input-field col s12 m6 l4">
+        <i class="material-icons prefix">lock</i>
+        <%= f.password_field :password, class: 'validate' %>
+        <%= f.label :password, t('users.form.password').html_safe %>
+      </div>
+    </div>
+
+    <div class="row">
+      <p class="col s6 m4 l2">
+        <%= f.radio_button :role, 'employee', class: 'with-gap' %>
+        <%= f.label :role_employee, t('users.form.role.employee').html_safe %>
+      </p>
+      <p class="col s6 m4 l2">
+        <%= f.radio_button :role, 'admin', class: 'with-gap' %>
+        <%= f.label :role_admin, t('users.form.role.admin').html_safe %>
+      </p>
+    </div>
+
+    <div class="row">
+      <div class="input-field col s12 m6 l4">
+        <%= f.select :timezone do %>
+            <%= content_tag(:option, t('users.form.select_your_timezone'), {value: '', disabled: 'disabled'}) %>
+            <%= time_zone_options_for_select(:timezone, nil, ActiveSupport::TimeZone) %>
+        <% end %>
+        <%= f.label :role_employee, t('users.form.timezone').html_safe %>
+      </div>
+    </div>
+
+    <h5 class="a-color-2"><%= t('users.form.info').html_safe %></h5>
+
+    <div class="row">
+      <div class="input-field col s12 m6 l4">
+        <i class="material-icons prefix">person</i>
+        <%= f.text_field :first_name, class: 'validate' %>
+        <%= f.label :first_name, t('users.form.first_name').html_safe %>
+      </div>
+      <div class="input-field col s12 m6 l4">
+        <i class="material-icons prefix hide">account_circle</i>
+        <%= f.text_field :last_name, class: 'validate' %>
+        <%= f.label :last_name, t('users.form.last_name').html_safe %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="input-field col s12 m6 l4">
+        <i class="material-icons prefix">email</i>
+        <%= f.text_field :email, class: 'validate' %>
+        <%= f.label :email, t('users.form.email').html_safe %>
+      </div>
+      <div class="input-field col s12 m6 l4">
+        <i class="material-icons prefix">phone_iphone</i>
+        <%= f.text_field :phone_number, class: 'validate' %>
+        <%= f.label :phone_number, t('users.form.phone_number').html_safe %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="input-field col s12 m6 l4">
+        <i class="material-icons prefix">school</i>
+        <%= f.text_field :title, class: 'validate' %>
+        <%= f.label :title, t('users.form.title').html_safe %>
+      </div>
+    </div>
+
+    <div class="row">
+      <%= f.button t(@user.id? ? 'users.form.btn.update' : 'users.form.btn.save').html_safe, class: 'btn waves-effect waves-light' %>
+      <%= link_to t('btn.cancel'), users_path, class: 'waves-effect btn-flat center-align' %>
+    </div>
+<% end %>

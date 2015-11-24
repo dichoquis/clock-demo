@@ -1,0 +1,10 @@
+<% content_for(:title, t('tasks.title').html_safe) %>
+<% content_for(:active_menu, 'tasks') %>
+
+<div class="row">
+  <div class="col s12 m12 l8 right-align">
+    <%= link_to new_task_path, class: 'btn waves-effect waves-light' do %>
+        <i class="material-icons left">note_add</i><%= t('tasks.btn.add').html_safe %>
+    <% end %>
+  </div>
+</div>

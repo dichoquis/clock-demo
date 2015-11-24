@@ -1,0 +1,121 @@
+es:
+  app:
+    name: 'Start Time'
+
+  login: 'Iniciar sesi&oacute;n'
+  login_errors: "Email y/o password incorrectos"
+  logout: 'Cerrar sesi&oacute;n'
+
+  btn:
+    cancel: 'Cancelar'
+    save: 'Guardar'
+    delete: 'Eliminar'
+    close: 'Cerrar'
+    update: 'Actualizar'
+
+  menu:
+    time_sheet: 'Hoja de Trabajo'
+    reports: 'Reportes'
+    users: 'Usuarios'
+    tasks: 'Tareas'
+    settings: 'Configuraciones'
+    logout: 'Cerrar sesi&oacute;n'
+
+  errors:
+    unauthorized: 'Usted no est&aacute; autorizado para hacer esta operaci&oacute;n'
+
+  users:
+    form:
+      new:
+        title: 'A&ntilde;adir Usuario'
+        heading: 'A&ntilde;adir Usuario'
+      edit:
+        title: 'Editar Usuario'
+        heading: 'Editar Usuario'
+      account: 'Cuenta'
+      username: 'Nombre de Usuario'
+      password: 'Contrase&ntilde;a'
+      role:
+        admin: 'Administrador'
+        employee: 'Empleado'
+      timezone: 'Zona Horaria'
+      select_your_timezone: 'Selecciona tu Zona Horaria'
+      info: 'Informaci&oacute;n Personal'
+      first_name: 'Nombre'
+      last_name: 'Apellido'
+      email: 'Correo Electr&oacute;nico'
+      phone_number: 'Tel&eacute;fono'
+      title: 'Puesto de Trabajo'
+      btn:
+        save: 'A&ntilde;adir Usuario'
+        update: 'Actualizar'
+      messages:
+        invalid: 'Por favor aseg&uacute;rese de que sus datos sean correctos.'
+    list:
+      active:
+        title: 'Usuarios Activos'
+        heading: 'Usuarios Activos'
+      archived:
+        title: 'Usuarios Archivados'
+        heading: 'Usuarios Archivados'
+      name: 'Nombre'
+      account_type: 'Tipo de Cuenta'
+      archived_date: 'Fecha Archivada'
+    delete:
+      confirm:
+        title: 'Eliminar Usuario'
+        desc: '&iquest;Est&aacute; usted seguro de que desea eliminar este usuario?.'
+    btn:
+      add: 'A&ntilde;adir Usuario'
+      edit: 'Editar'
+      active: 'Activar'
+      archive: 'Archivar'
+      delete: 'Eliminar'
+    errors:
+      not_found: 'Usuario no encontrado'
+    messages:
+      saved: 'Usuario ha sido creado exitosamente.'
+      updated: 'Usuario ha sido actualizado exitosamente.'
+      deleted: 'Usuario ha sido eliminado exitosamente.'
+      actived: 'Usuario ha sido activado exitosamente.'
+      archived: 'Usuario ha sido archivado exitosamente.'
+
+  time_sheets:
+    title: 'Hoja de trabajo'
+    total_hours_for_today: 'Horas de trabajo para hoy:'
+    notes: 'Notas'
+    clock_in: 'Entrada'
+    clock_out: 'Salida'
+    work_hours: 'Horas de Trabajo'
+    in_progress: 'En progreso...'
+    hours: 'Horas'
+    minutes: 'Minutos'
+    errors:
+      clock_in: 'Usted ya ha marcado su hora de inicio.'
+      clock_out: 'Usted ya ha marcado su hora de salida.'
+      edit_note: 'Usted no puede editar notas pasadas.'
+    messages:
+      updated_note: 'Nota ha sido actualizado.'
+    view_note:
+      heading: "Nota para %{clock_in} - %{clock_out}"
+    edit_note:
+      heading: "Editar nota para %{clock_in} - %{clock_out}"
+
+  tasks:
+    title: 'Tareas'
+    form:
+      title: 'A&ntilde;adir Tarea'
+      heading: 'A&ntilde;adir Tarea'
+      user: 'Asignar a'
+      description: 'Descripci&oacute;n'
+      priority: 'Prioridad'
+      expiration_date: 'Fecha de vencimiento'
+      btn:
+        save: 'A&ntilde;adir Tarea'
+      messages:
+        invalid: 'Por favor aseg&uacute;rese de que los datos sean correctos.'
+    btn:
+      add: 'A&ntilde;adir Tarea'
+    messages:
+      saved: 'Tarea a&ntilde;adido satisfactoriamente'
+

@@ -1,0 +1,24 @@
+<%= form_for(@time_sheet, url: update_time_sheet_note_path, remote: true, html: {name: 'edit_time_sheet_note', :'data-type' => 'json'}) do |f| %>
+    <div class="modal-content">
+      <h4><%= t('time_sheets.edit_note.heading', clock_in: @time_sheet.formatted_clock_in, clock_out: @time_sheet.formatted_clock_out) %></h4>
+
+      <div class="row">
+        <div class="input-field col s12">
+          <%= f.text_area :work_report, class: 'materialize-textarea' %>
+          <%= f.label :work_report, t('time_sheets.notes').html_safe %>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <%= f.button t('btn.update'), class: 'modal-action waves-effect btn' %>
+      <%= link_to t('btn.cancel'), '#!', class: 'modal-action modal-close waves-effect btn-flat' %>
+    </div>
+<% end %>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('form[name=edit_time_sheet_note]').on('ajax:success', function(event, data, xhr){
+            time_sheets.update_note(data);
+        });
+    });
+</script>

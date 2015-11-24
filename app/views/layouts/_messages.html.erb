@@ -1,0 +1,11 @@
+<script type="text/javascript">
+    $(document).ready(function () {
+        <% flash.each do |message_type, message| %>
+            <% if message_type == 'notice' %>
+                message_utils.show_success("<%= message.html_safe %>");
+            <% else %>
+                message_utils.show_error("<%= message.html_safe %>");
+            <% end %>
+        <% end %>
+    });
+</script>

@@ -1,0 +1,133 @@
+<% content_for(:title, t('users.list.active.title').html_safe) %>
+<% content_for(:active_menu, 'users') %>
+
+<div class="row">
+  <div class="col s12 m12 l8 right-align">
+    <%= link_to new_user_path, class: 'waves-effect waves-light btn' do %>
+        <i class="material-icons left">person_add</i><%= t('users.btn.add').html_safe %>
+    <% end %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col s12 m12 l8">
+    <ul class="tabs">
+      <li class="tab col s3"><a class="active" href="#active"><%= t('users.list.active.heading').html_safe %></a></li>
+      <li class="tab col s3"><a  href="#archived"><%= t('users.list.archived.heading').html_safe %></a></li>
+    </ul>
+  </div>
+  <div id="active" class="col s12 m12 l8">
+    <br/>
+    <table class="bordered">
+      <thead>
+      <tr>
+        <th><%= t('users.list.name').html_safe %></th>
+        <th><%= t('users.list.account_type').html_safe %></th>
+        <th></th>
+      </tr>
+      </thead>
+      <tbody>
+      <% @active_users.each do |user| %>
+          <tr>
+            <td>
+              <%= user.full_name %>
+              <% if user.title != nil %>
+                  <br/><span class="grey-text"><%= user.title %></span>
+              <% end %>
+            </td>
+            <td><%= t(user.role_label) %></td>
+            <td class="right-align">
+              <a href="#" class='dropdown-button' data-activates='user-actions-<%= user.id %>' data-alignment="right" data-beloworigin="true">
+                <i class="material-icons">more_vert</i>
+              </a>
+              <ul id='user-actions-<%= user.id %>' class='dropdown-content' style="min-width: 150px;">
+                <li>
+                  <%= link_to t('users.btn.edit').html_safe, edit_user_path(user), class: 'grey-text text-darken-3' %>
+                </li>
+                <% if current_user.id != user.id %>
+                    <li>
+                      <%= link_to t('users.btn.archive').html_safe, {controller: 'users', action: 'archive', id: user}, {class: 'grey-text text-darken-3'} %>
+                    </li>
+                    <li>
+                      <%= link_to t('users.btn.delete').html_safe, user_path(user), method: :delete, class: 'grey-text text-darken-3 a-btn-delete-user' %>
+                    </li>
+                <% end %>
+              </ul>
+            </td>
+          </tr>
+      <% end %>
+      </tbody>
+    </table>
+  </div>
+  <div id="archived" class="col s12 m12 l8" style="display: none;">
+    <br/>
+    <table class="bordered">
+      <thead>
+      <tr>
+        <th><%= t('users.list.name').html_safe %></th>
+        <th><%= t('users.list.account_type').html_safe %></th>
+        <th><%= t('users.list.archived_date').html_safe %></th>
+        <th></th>
+      </tr>
+      </thead>
+      <tbody>
+      <% @archived_users.each do |user| %>
+          <tr>
+            <td>
+              <%= user.full_name %>
+              <% if user.title != nil %>
+                  <br/><span class="grey-text"><%= user.title %></span>
+              <% end %>
+            </td>
+            <td><%= t(user.role_label) %></td>
+            <td><%= user.archived_date.strftime("%x") %></td>
+            <td class="right-align">
+              <a href="#" class='dropdown-button' data-activates='user-actions-<%= user.id %>' data-alignment="right" data-beloworigin="true">
+                <i class="material-icons">more_vert</i>
+              </a>
+              <ul id='user-actions-<%= user.id %>' class='dropdown-content' style="min-width: 150px;">
+                <li>
+                  <%= link_to t('users.btn.edit').html_safe, edit_user_path(user), class: 'grey-text text-darken-3' %>
+                </li>
+                <li>
+                  <%= link_to t('users.btn.active').html_safe, {controller: 'users', action: 'active', id: user}, {class: 'grey-text text-darken-3'} %>
+                </li>
+                <% if current_user.id != user.id %>
+                    <li>
+                      <%= link_to t('users.btn.delete').html_safe, user_path(user), method: :delete, class: 'grey-text text-darken-3 a-btn-delete-user' %>
+                    </li>
+                <% end %>
+              </ul>
+            </td>
+          </tr>
+      <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- Modal for Delete User -->
+<div id="modal-delete-user" class="modal">
+  <div class="modal-content">
+    <h4><%= t('users.delete.confirm.title') %></h4>
+    <p><%= t('users.delete.confirm.desc').html_safe %></p>
+  </div>
+  <div class="modal-footer">
+    <%= link_to '#!', method: :delete, id: 'btn-delete-user', class: 'modal-action modal-close waves-effect waves-green btn' do %>
+        <%= t('btn.delete') %>
+    <% end %>
+    <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat"><%= t('btn.cancel') %></a>
+  </div>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('.a-btn-delete-user').click(function () {
+            var modalDeleteUser = $('#modal-delete-user');
+            modalDeleteUser.find('#btn-delete-user').attr('href', $(this).attr('href'));
+            modalDeleteUser.openModal();
+            return false;
+        });
+    });
+</script>
+

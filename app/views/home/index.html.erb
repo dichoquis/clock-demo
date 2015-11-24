@@ -1,0 +1,7 @@
+<div class="card-panel teal lighten-2">
+  <h1 class="center-align">...</h1>
+  <% if logged_in? %>
+    <%= current_user.email %>
+    <%= link_to "Logout", logout_path %>
+  <% end %>
+</div>

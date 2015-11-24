@@ -1,0 +1,14 @@
+<div class="modal-content">
+  <h4><%= t('time_sheets.view_note.heading', clock_in: @time_sheet.formatted_clock_in, clock_out: @time_sheet.formatted_clock_out) %></h4>
+
+  <% if @time_sheet.is_note_editable %>
+      <%= link_to edit_time_sheet_note_path(@time_sheet), class: 'btn-floating waves-effect waves-light a-edit-note', style: 'position: absolute; right: 24px; top: 24px;' do %>
+          <i class="material-icons">edit</i>
+      <% end %>
+  <% end %>
+
+  <p class="flow-text grey lighten-4"><%= @time_sheet.work_report %></p>
+</div>
+<div class="modal-footer">
+  <a href="#!" class="modal-action modal-close waves-effect btn-flat"><%= t 'btn.close' %></a>
+</div>

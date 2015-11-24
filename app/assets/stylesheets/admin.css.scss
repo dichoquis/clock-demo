@@ -1,0 +1,41 @@
+@import "materialize/components/color";
+@import "custom_materialize";
+@import "materialize";
+@import "materialize/extras/nouislider";
+@import "ios7_style_switch";
+@import "global";
+/*
+ *= require_tree .
+ *= require_self
+*/
+
+body {
+  background-color: #ededea;
+}
+
+.a-logo {
+  min-height: 250px;
+  padding: 0 30px;
+}
+
+.side-nav i.material-icons {
+  vertical-align: middle;
+  margin-right: 1rem;
+}
+.a-nav-header .brand-logo .material-icons{
+  margin: 0 1rem;
+}
+
+.a-container-main, .a-nav-header {
+  padding-left: 240px;
+}
+
+.a-container-main .a-body-main {
+  padding: 30px 40px;
+}
+
+@media only screen and (max-width : 992px) {
+  .a-container-main, .a-nav-header {
+    padding-left: 0;
+  }
+}

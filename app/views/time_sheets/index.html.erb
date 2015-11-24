@@ -1,0 +1,49 @@
+<% content_for(:title, t('time_sheets.title').html_safe) %>
+<% content_for(:active_menu, 'time_sheets') %>
+
+<div class="row">
+  <div class="col s12 m6 l5">
+    <%= form_for @time_sheet do |f| %>
+        <label class="ios7-switch" style="font-size: 128px;">
+          <% if @time_sheet.clock_in.nil? %>
+              <input type="checkbox" name="start_work"/>
+          <% else %>
+              <input type="checkbox" name="start_work" checked/>
+          <% end %>
+          <span></span>
+        </label>
+
+        <div class="input-field col s12" style="<%= @time_sheet.clock_in.nil? ? 'display: none;' : '' %>">
+          <%= f.text_area :work_report, class: 'materialize-textarea' %>
+          <%= f.label :work_report, t('time_sheets.notes').html_safe %>
+        </div>
+    <% end %>
+  </div>
+
+  <div class="col s12 m6 l5" id="time-sheet-content">
+    <%= render 'time_sheet' %>
+  </div>
+</div>
+
+<div id="modal-view-note" class="modal modal-fixed-footer"></div>
+<div id="modal-edit-note" class="modal modal-fixed-footer"></div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('input[name=start_work]').change(function () {
+            time_sheets.switch_start_work($(this), "<%= time_sheet_log_path %>");
+        });
+
+        $('#time-sheet-content').delegate('.a-view-note', 'click', function () {
+            time_sheets.view_note($(this));
+            return false;
+        });
+
+        $('#modal-view-note').delegate('.a-edit-note', 'click', function () {
+            time_sheets.edit_note($(this));
+            return false;
+        });
+    });
+</script>
+
+
